@@ -1,4 +1,4 @@
-FROM JohnnyMorganz/StyLua:2.5.2 AS stylua
+FROM johnnymorganz/stylua:2.5.2 AS stylua
 
 FROM mcr.microsoft.com/devcontainers/base:noble
 

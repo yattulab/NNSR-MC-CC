@@ -18,3 +18,4 @@
 ---| "sync"    # sync package from repository
 ---| "list"    # show package installed
 ---| "run"     # run package (need define entry)
+---| "help"    # show help

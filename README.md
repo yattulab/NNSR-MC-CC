@@ -3,6 +3,6 @@
 
 とりあえずこれ実行して
 ```
-wget https://github.com/yattulab/NNSR-MC-CC/raw/refs/heads/main/setup.lua
+wget https://raw.githubusercontent.com/yattulab/NNSR-MC-CC/main/setup.lua
 setup
 ```

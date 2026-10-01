@@ -101,7 +101,7 @@ local function download_nnsr_files(settings, use_cdn)
   for i, file in ipairs(manifest.files) do
     print(string.format("[%2d / %2d] %s", i, #manifest.files, file))
     local code_path = fs.combine("/", nnsr_path, file)
-    local code = download(code_path)
+    local code = download(url_base .. fs.combine(nnsr_path, file))
     if code then
       local dir = fs.getDir(code_path)
       if fs.exists(dir) then

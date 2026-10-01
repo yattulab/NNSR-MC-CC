@@ -25,7 +25,7 @@ repo_settings = {
   branch = "main",
 }
 
-nnsr_path = "apps/gabuniku/nnsr"
+nnsr_path = "apps/gabuniku/nnsr/"
 
 -- download from url
 ---@param url string
@@ -36,7 +36,7 @@ local function download(url)
   if request == nil then
     return nil
   end
-  request.readAll()
+  return request.readAll()
 end
 
 ---@param settings RepoSettings
@@ -56,15 +56,15 @@ local function download_nnsr_files(settings, use_cdn)
 
   -- check manifest
   print("check manifest...")
-  local jsondata = download(url_base .. nnsr_path .. "/manifest.json")
+  local jsondata = download(url_base .. nnsr_path .. "manifest.json")
   if jsondata == nil then
-    print("failed download manifest.json")
+    printError("failed download manifest.json")
     return false
   end
 
   local manifest, err = textutils.unserialiseJSON(jsondata)
   if manifest == nil then
-    print("failed parse manifest : " .. err)
+    printError("failed parse manifest : " .. err)
     return false
   end
   ---@cast manifest Manifest
@@ -72,38 +72,69 @@ local function download_nnsr_files(settings, use_cdn)
   print("downloaded manifest.json")
 
   if manifest.schemaVersion ~= 1 then
-    print(string.format("unsuported manifest version %d", manifest.schemaVersion))
+    printError(string.format("unsuported manifest version %d", manifest.schemaVersion))
     return false
   end
 
-  print("name        : " .. manifest.name)
-  print("version     : " .. manifest.version)
+  print("name    : " .. manifest.name)
+  print("version : " .. manifest.version)
   print("source file(s)")
 
   if manifest.files then
     for _, files in ipairs(manifest.files) do
-      print(files)
+      print("- " .. files)
     end
   end
 
-  local user_in = read(string.format("install nnsr ok (%2d files) ? (y/n)", #manifest.files))
+  print(string.format("install nnsr ok (%2d files) ? (y/n) >", #manifest.files))
+  local user_in = read()
 
   if user_in ~= "Y" and user_in ~= "y" then
     print("cancel by user")
     return false
   end
 
-  return false
+  print(string.format("download %d file(s)", #manifest.files))
+
+  for i, file in ipairs(manifest.files) do
+    print(string.format("[%2d / %2d] %s", i, #manifest.files, file))
+    local code = download(url_base .. nnsr_path .. file)
+    if code then
+      local handle = fs.open("/" .. nnsr_path .. file, "w")
+      if handle == nil then
+        printError("faild create : /" .. nnsr_path .. file)
+        return false
+      end
+      handle.write(code)
+      handle.close()
+    else
+      printError("faild download : " .. file)
+    end
+  end
+
+  return true
 end
 
-download_nnsr_files(repo_settings, false)
+local result = download_nnsr_files(repo_settings, false)
 
+if not result then
+  printError("failed setup nnsr")
+  return
+end
+
+-- setup startup script
+print("setup startup script")
 fs.makeDir("/startup")
-local setup_file = fs.open("nnsr-setup.lua", "w")
+local setup_file = fs.open("/startup/nnsr-setup.lua", "w")
 if setup_file == nil then
-  print("faild open /startup/nnsr-setup.lua")
+  printError("faild open /startup/nnsr-setup.lua")
   return
 end
 setup_file.writeLine("-- THIS FILE IS AUTO GENERATE BY SETUP SCRIPT")
-setup_file.writeLine('shell.setAlias("nnsr", "/pkg/gabuniku/nnsr/main.lua")')
+setup_file.writeLine('shell.setAlias("nnsr", "/apps/gabuniku/nnsr/main.lua")')
 setup_file.close()
+
+shell.setAlias("nnsr", "/apps/gabuniku/nnsr/main.lua")
+
+print("finish install nnsr")
+print('please use "nnsr"or "nnsr help"')

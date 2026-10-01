@@ -4,6 +4,9 @@
   "name": "nnsr",
   "description": "package manager and runtime for nnsr minecraft computer craft",
   "files": [
-    "main.lua"
+    "main.lua",
+    "commands/run.lua",
+    "lib/manifest.lua",
+    "lib/path.lua"
   ]
 }

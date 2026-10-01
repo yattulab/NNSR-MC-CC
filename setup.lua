@@ -94,19 +94,27 @@ local function download_nnsr_files(settings, use_cdn)
     return false
   end
 
-  fs.makeDir("/apps/gabuniku/nnsr")
+  fs.makeDir("/" .. nnsr_path)
 
   print(string.format("download %d file(s)", #manifest.files))
 
   for i, file in ipairs(manifest.files) do
     print(string.format("[%2d / %2d] %s", i, #manifest.files, file))
-    local code = download(url_base .. nnsr_path .. file)
+    local code_path = fs.combine("/", nnsr_path, file)
+    local code = download(code_path)
     if code then
-      local handle = fs.open("/" .. nnsr_path .. file, "w")
+      local dir = fs.getDir(code_path)
+      if fs.exists(dir) then
+        fs.makeDir(dir)
+      end
+
+      local handle = fs.open(code_path, "w")
+
       if handle == nil then
-        printError("faild create : /" .. nnsr_path .. file)
+        printError("faild create : " .. code_path)
         return false
       end
+
       handle.write(code)
       handle.close()
     else

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "version": "0.0.1",
+  "name": "nnsr",
+  "description": "package manager and runtime for nnsr minecraft computer craft",
+  "files": [
+    "main.lua"
+  ]
+}

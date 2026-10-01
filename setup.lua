@@ -95,13 +95,15 @@ local function download_nnsr_files(settings, use_cdn)
     end
   end
 
-  print(string.format("install nnsr ok (%2d files) ? (y/n) >", #manifest.files))
+  print(string.format("install nnsr ok (%2d files) ? (y/n)", #manifest.files))
   local user_in = read()
 
   if user_in ~= "Y" and user_in ~= "y" then
     print("cancel by user")
     return false
   end
+
+  fs.makeDir("/apps/gabuniku/nnsr")
 
   print(string.format("download %d file(s)", #manifest.files))
 
@@ -142,6 +144,18 @@ end
 setup_file.writeLine("-- THIS FILE IS AUTO GENERATE BY SETUP SCRIPT")
 setup_file.writeLine('shell.setAlias("nnsr", "/apps/gabuniku/nnsr/main.lua")')
 setup_file.close()
+
+-- setup config
+print("setup config")
+local config = fs.open("/apps/gabuniku/nnsr/config.json", "w")
+if config == nil then
+  printError("failed create config")
+  return
+end
+
+config.writeLine(textutils.serialiseJSON(repo_settings))
+
+config.close()
 
 shell.setAlias("nnsr", "/apps/gabuniku/nnsr/main.lua")
 

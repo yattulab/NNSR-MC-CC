@@ -69,6 +69,15 @@ local function download_nnsr_files(settings, use_cdn)
   end
   ---@cast manifest Manifest
 
+  local manifest_file = fs.open("/apps/gabuniku/nnsr/manifest.json", "w")
+  if manifest_file == nil then
+    printError("failed save manifest.json")
+    return false
+  end
+
+  manifest_file.write(jsondata)
+  manifest_file.close()
+
   print("downloaded manifest.json")
 
   if manifest.schemaVersion ~= 1 then

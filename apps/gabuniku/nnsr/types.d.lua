@@ -7,6 +7,7 @@
 
 ---@class Manifest
 ---@field schemaVersion integer
+---@field id string
 ---@field name string
 ---@field description string?
 ---@field version string

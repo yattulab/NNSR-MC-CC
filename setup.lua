@@ -4,13 +4,16 @@
  ]]
 --
 
+---@package
 ---@class RepoSettings
 ---@field user string User Name of repository
 ---@field repo string Repository url
 ---@field branch string Repository branch
 
+---@package
 ---@class Manifest
 ---@field schemaVersion integer
+---@field id string
 ---@field name string
 ---@field description string?
 ---@field version string
@@ -146,7 +149,7 @@ setup_file.close()
 
 -- setup config
 print("setup config")
-local config = fs.open("/apps/gabuniku/nnsr/config.json", "w")
+local config = fs.open("/apps/gabuniku/nnsr/repository.json", "w")
 if config == nil then
   printError("failed create config")
   return

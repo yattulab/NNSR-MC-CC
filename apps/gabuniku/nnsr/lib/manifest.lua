@@ -2,7 +2,7 @@ local manifest = {}
 
 local SUPPORT_VERTION = 1
 
-local path = require("path")
+local path = require("lib.path")
 
 ---@param obj table
 ---@return Manifest | nil
@@ -16,6 +16,10 @@ function manifest.try_from(obj)
 
   if type(obj.name) ~= "string" then
     return nil, "name must be string"
+  end
+
+  if type(obj.id) ~= "string" then
+    return nil, "id must be string"
   end
 
   if type(obj.version) ~= "string" then
@@ -40,8 +44,12 @@ function manifest.try_from(obj)
     end
   end
 
-  if type(obj.dependencies) ~= "table" then
+  if type(obj.dependencies) ~= "table" and type(obj.dependencies) ~= "nil" then
     return nil, "dependencies must be table"
+  end
+
+  if obj.dependencies == nil then
+    obj.dependencies = {}
   end
 
   if obj.dependencies ~= nil then

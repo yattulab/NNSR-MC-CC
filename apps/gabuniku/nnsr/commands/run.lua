@@ -76,4 +76,17 @@ function run.run(pkg_name, ...)
   return true
 end
 
+function run.help()
+  print("NAME")
+  print("  nnsr run - run package")
+  print("SYNOPSIS")
+  print("  nnsr run [PKG] [ARGS]")
+  print("DESCRIPTION")
+  print("  Run script of package.")
+  print("  ARGS are passed to the script.")
+  print('  PKG style must be "USER/PKG_NAME"')
+  print("EXAMPLE")
+  print("  nnsr run hoge/fuga foo bar")
+end
+
 return run

@@ -1,12 +1,16 @@
 {
   "schemaVersion": 1,
+  "id": "gabuniku/nnsr",
   "version": "0.0.1",
   "name": "nnsr",
   "description": "package manager and runtime for nnsr minecraft computer craft",
   "files": [
     "main.lua",
     "commands/run.lua",
+    "commands/sync.lua",
+    "commands/help.lua",
     "lib/manifest.lua",
-    "lib/path.lua"
+    "lib/path.lua",
+    "lib/downloader.lua"
   ]
 }

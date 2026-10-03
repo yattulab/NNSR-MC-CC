@@ -2,7 +2,8 @@ local path = {}
 
 ---@param path_ string
 ---@param mode ccTweaked.fs.openMode
----@return  ccTweaked.fs.BinaryReadHandle|ccTweaked.fs.BinaryWriteHandle|ccTweaked.fs.ReadHandle|ccTweaked.fs.WriteHandle| nil, string | nil
+---@return  ccTweaked.fs.BinaryReadHandle|ccTweaked.fs.BinaryWriteHandle|ccTweaked.fs.ReadHandle|ccTweaked.fs.WriteHandle| nil
+---@return string | nil
 function path.open(path_, mode)
   if not fs.exists(path_) then
     return nil, "no exists"

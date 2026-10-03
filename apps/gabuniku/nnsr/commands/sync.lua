@@ -19,14 +19,14 @@ function sync.download_manifest(repo, pkg_id, use_cdn)
   print("get manifest")
   local mani_res, err = downloader:download_file("manifest.json")
   if mani_res == nil then
-    return nil, false
+    return nil, err
   end
   print(string.format("download manifest.json (%d B)", mani_res))
   print("reading manifest")
 
   local manifest_path = fs.combine("/apps", pkg_id, "manifest.json")
-  local manifest = manifestlib.try_from_path(manifest_path)
-  return manifest
+  local manifest, err = manifestlib.try_from_path(manifest_path)
+  return manifest, err
 end
 
 ---resolved
@@ -112,6 +112,7 @@ function sync.run(pkg_id, ...)
     for _, arg in ipairs(args) do
       if arg == "--no-cdn" then
         use_cdn = false
+        print("do not use cdn")
       else
         printError("unknown argument : " .. arg)
         return false

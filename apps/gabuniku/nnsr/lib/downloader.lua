@@ -63,6 +63,7 @@ end
 ---@param path string
 ---@param pkg_id string?
 ---@return number | nil length
+---@return string | nil
 function Downloader:download_file(path, pkg_id)
   local url = self:repo_path_to_url(path, pkg_id)
   local data, err = self.download(url)
@@ -71,16 +72,16 @@ function Downloader:download_file(path, pkg_id)
     local path = fs.combine("/apps", pkg_id, path)
     local handle, ferr = fs.open(path, "wb")
     if handle == nil then
-      printError("failed open " .. ferr)
-      return nil
+      --      printError("failed open " .. ferr)
+      return nil, ferr
     end
     handle.write(data)
     handle.close()
-    return #data
+    return #data, nil
   else
-    printError("failed download " .. path)
-    printError(err)
-    return nil
+    --    printError("failed download " .. path)
+    --   printError(err)
+    return nil, err
   end
 end
 

@@ -135,6 +135,19 @@ function sync.run(pkg_id, ...)
   return sync.resolve_pkg(repo, pkg_id, use_cdn)
 end
 
-function sync.help() end
+function sync.help()
+  print("NAME")
+  print("  nnsr sync - sync package")
+  print("SYNOPSIS")
+  print("  nnsr sync [PKG] [OPTIONS]")
+  print("DESCRIPTION")
+  print("  Run script of package.")
+  print('  PKG style must be "USER/PKG_NAME"')
+  print("OPTIONS")
+  print("  --no-cdn do not cdn. use github raw data")
+  print("EXAMPLE")
+  print("  nnsr sync hoge/fuga")
+  print("  nnsr sync hoge/fuga --no-cdn")
+end
 
 return sync

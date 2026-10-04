@@ -6,6 +6,7 @@
   "description": "utility for peripherals",
   "entry": "main.lua",
   "files": [
-    "main.lua"
+    "main.lua",
+    "lsperi.lua"
   ]
 }

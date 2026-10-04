@@ -13,6 +13,21 @@ function run.run(pkg_name, ...)
   end
 
   local args = { ... }
+  local entry_name = nil
+  local sep = pkg_name:find(":", 1, true)
+
+  if sep then
+    entry_name = pkg_name:sub(sep + 1)
+
+    if not entry_name:find(".lua", 1, true) then
+      entry_name = entry_name .. ".lua"
+    end
+
+    pkg_name = pkg_name:sub(1, sep - 1)
+  end
+
+  print(pkg_name)
+  print(entry_name)
 
   -- set require path
   local cc_require = require("cc.require")
@@ -46,12 +61,16 @@ function run.run(pkg_name, ...)
     return false
   end
 
-  local entry_name = manifest.entry
   if entry_name == nil then
-    entry_name = "main.lua"
+    entry_name = manifest.entry or "main.lua"
   end
 
   local entry_path = fs.combine(app_dir, entry_name)
+
+  if not fs.exists(entry_path) then
+    printError("not found entry : ", entry_name)
+    return false
+  end
 
   local env = setmetatable({}, {
     __index = _ENV,

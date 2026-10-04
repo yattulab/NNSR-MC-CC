@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "gabuniku/peripheral-utils",
+  "version": "0.0.1",
+  "name": "peripheral-utils",
+  "description": "utility for peripherals",
+  "entry": "main.lua",
+  "files": [
+    "main.lua"
+  ]
+}

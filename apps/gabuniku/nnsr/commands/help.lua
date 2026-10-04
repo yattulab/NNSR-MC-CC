@@ -30,6 +30,7 @@ function help.run(...)
     elseif command == "sync" then
       require("commands.sync").help()
     elseif command == "list" then
+      require("commands.list").help()
     elseif command == "help" then
       help.help()
     else

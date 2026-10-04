@@ -9,6 +9,7 @@
     "commands/run.lua",
     "commands/sync.lua",
     "commands/help.lua",
+    "commands/list.lua",
     "lib/manifest.lua",
     "lib/path.lua",
     "lib/downloader.lua"

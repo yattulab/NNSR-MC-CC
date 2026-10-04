@@ -8,7 +8,7 @@ if command == "run" then
 elseif command == "sync" then
   require("commands.sync").run(table.unpack(args, 2))
 elseif command == "list" then
-  --require("commands.list").run(table.unpack(args, 2))
+  require("commands.list").run(table.unpack(args, 2))
 elseif command == "help" then
   require("commands.help").run(table.unpack(args, 2))
 else

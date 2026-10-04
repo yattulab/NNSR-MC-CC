@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "PKG_ID",
+  "version": "0.0.1",
+  "name": "PKG_NAME",
+  "description": "",
+  "entry": "main.lua",
+  "files": [
+    "main.lua"
+  ]
+}

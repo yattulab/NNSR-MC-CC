@@ -39,11 +39,13 @@ function sync.resolve_pkg(repo, pkg_id, use_cdn)
   local manifest_path = fs.combine(base_path, "manifest.json")
   local manifest
   local err
+  --[[
   if fs.exists(manifest_path) then
     manifest, err = manifestlib.try_from_path(manifest_path)
   else
-    manifest, err = sync.download_manifest(repo, pkg_id, use_cdn)
-  end
+    --]]
+  manifest, err = sync.download_manifest(repo, pkg_id, use_cdn)
+  --end
   if manifest == nil then
     printError("can not read manifest " .. err)
     return false

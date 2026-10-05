@@ -10,19 +10,19 @@ local top_lever = peripheral.wrap("top")
 local throttle_in = peripheral.wrap("redstone_relay_9")
 
 ---@type ccTweaked.peripheral.RedstoneRelay
-local rudder_l = peripheral.wrap("redstone_relay_5")
+local rudder_l = peripheral.wrap("redstone_relay_6")
 
 ---@type ccTweaked.peripheral.RedstoneRelay
-local rudder_r = peripheral.wrap("redstone_relay_1")
+local rudder_r = peripheral.wrap("redstone_relay_7")
 
 ---@type ccTweaked.peripheral.RedstoneRelay
-local throttle = peripheral.wrap("redstone_relay_2")
+local throttle = peripheral.wrap("redstone_relay_10")
 
 ---@type ccTweaked.peripheral.RedstoneRelay
 local shift_l = peripheral.wrap("redstone_relay_4")
 
 ---@type ccTweaked.peripheral.RedstoneRelay
-local shift_r = peripheral.wrap("redstone_relay_0")
+local shift_r = peripheral.wrap("redstone_relay_5")
 
 while true do
   local steer_in = steering.getNormalizedAngle()

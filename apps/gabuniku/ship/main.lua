@@ -141,4 +141,4 @@ local function consoleLoop()
   end
 end
 
-parallel.waitForAll(control(), consoleLoop)
+parallel.waitForAll(control, consoleLoop)

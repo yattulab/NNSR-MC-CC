@@ -15,7 +15,7 @@ local input_peripherals = {
   },
   i_ap_enable = {
     device = "top",
-    side = "left",
+    side = "right",
   },
   -- i_turn_enable = {},
   -- i_turn_dir = {},

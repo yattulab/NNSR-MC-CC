@@ -29,7 +29,7 @@ local driver = driverlib.new(ship_conf)
 local steering = peripheral.wrap(ship_conf.i_steering.device)
 
 ---@type ccTweaked.peripheral.RedstoneRelay
-local ap_lever = peripheral.wrap(ship_conf.i_ap_enable)
+local ap_lever = peripheral.wrap(ship_conf.i_ap_enable.device)
 
 ---@type ccTweaked.peripheral.RedstoneRelay
 local throttle_in = peripheral.wrap(ship_conf.i_throttle.device)

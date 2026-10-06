@@ -19,7 +19,7 @@ local function setOutput(peri, value)
   if peri.invert then
     value = not value
   end
-  peripheral.call(peri.name, "setOutput", peri.side, value)
+  peripheral.call(peri.device, "setOutput", peri.side, value)
 end
 
 ---@param peri IOPeripheral
@@ -28,7 +28,7 @@ local function setAnalogOutput(peri, value)
   if peri.invert then
     value = 15 - value
   end
-  peripheral.call(peri.name, "setAnalogOutput", peri.side, value)
+  peripheral.call(peri.device, "setAnalogOutput", peri.side, value)
 end
 
 ---@param throttle number

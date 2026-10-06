@@ -6,6 +6,8 @@
   "description": "",
   "entry": "main.lua",
   "files": [
-    "main.lua"
+    "main.lua",
+    "driver.lua",
+    "configs/THI-EGZH.lua"
   ]
 }

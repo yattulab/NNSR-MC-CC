@@ -57,7 +57,7 @@ end
 local function getHeading()
   local _, yaw = sublevel.getLogicalPose().orientation:toEuler()
 
-  return (math.deg(yaw) + yaw_offset) % 360
+  return (yaw + math.rad(yaw_offset)) % math.pi * 2
 end
 
 local function pid(target, dt)

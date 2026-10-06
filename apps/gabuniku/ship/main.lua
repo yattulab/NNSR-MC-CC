@@ -99,23 +99,22 @@ local function control()
       if ship_conf.i_steering.invert then
         steer_in = -steer_in
       end
+    end
+    local throttle_val = throttle_in.getAnalogInput(ship_conf.i_throttle.side)
 
-      local throttle_val = throttle_in.getAnalogInput(ship_conf.i_throttle.side)
+    if ship_conf.i_throttle.invert then
+      throttle_val = 15 - throttle_val
+    end
 
-      if ship_conf.i_throttle.invert then
-        throttle_val = 15 - throttle_val
-      end
+    local invert = throttle_in.getInput(ship_conf.i_invert.side)
+    if ship_conf.i_invert.invert then
+      invert = not invert
+    end
 
-      local invert = throttle_in.getInput(ship_conf.i_invert.side)
-      if ship_conf.i_invert.invert then
-        invert = not invert
-      end
+    throttle = throttle_val / 15
 
-      throttle = throttle_val / 15
-
-      if invert then
-        throttle = -throttle
-      end
+    if invert then
+      throttle = -throttle
     end
     driver:drive(throttle, steer_in)
 

@@ -54,6 +54,10 @@ while true do
 
   local throttle = throttle_val / 15
 
+  if invert then
+    throttle = -throttle
+  end
+
   driver:drive(throttle, steer_in)
 
   sleep(0.05)

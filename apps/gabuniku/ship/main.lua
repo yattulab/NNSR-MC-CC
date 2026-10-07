@@ -92,7 +92,7 @@ local function control()
     if ap_en then
       if ap_state.target_head then
         steer_in = pid(ap_state.target_head, dt)
-        steer_in = math.max(steer_in, -1, math.min(steer_in, 1))
+        steer_in = math.max(math.min(steer_in, 1), -1)
       end
     else
       steer_in = steering.getNormalizedAngle()

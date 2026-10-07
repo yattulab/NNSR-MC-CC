@@ -10,6 +10,7 @@ function Driver.new(peri)
   ---@type Driver
   local obj = setmetatable({}, Driver)
   obj.peripheral = peri
+  peripheral.call("ccpe:transmission_peripheral_0", "reestServo")
   return obj
 end
 
@@ -35,12 +36,14 @@ end
 ---@param rudder number
 function Driver:drive(throttle, rudder)
   setAnalogOutput(self.peripheral.o_throttle, math.abs(throttle * 15))
-  local rs_steer = 15 * rudder
-  local steer_l = math.max(rs_steer, 0)
-  local steer_r = math.abs(math.min(rs_steer, 0))
+  --local rs_steer = 15 * rudder
+  --local steer_l = math.max(rs_steer, 0)
+  --local steer_r = math.abs(math.min(rs_steer, 0))
 
-  setAnalogOutput(self.peripheral.o_rudder_l, steer_l)
-  setAnalogOutput(self.peripheral.o_rudder_r, steer_r)
+  peripheral.call("ccpe:transmission_peripheral_0", "setServoAngle", rudder * 60)
+
+  -- setAnalogOutput(self.peripheral.o_rudder_l, steer_l)
+  -- setAnalogOutput(self.peripheral.o_rudder_r, steer_r)
 
   if throttle > 0 then
     setOutput(self.peripheral.o_shift_l, false)

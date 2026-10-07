@@ -10,7 +10,7 @@ function Driver.new(peri)
   ---@type Driver
   local obj = setmetatable({}, Driver)
   obj.peripheral = peri
-  peripheral.call("ccpe:transmission_peripheral_0", "reestServo")
+  peripheral.call("ccpe:transmission_peripheral_0", "resetServo")
   return obj
 end
 

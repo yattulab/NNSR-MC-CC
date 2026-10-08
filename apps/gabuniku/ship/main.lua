@@ -57,7 +57,7 @@ end
 local function getHeading()
   local _, yaw = sublevel.getLogicalPose().orientation:toEuler()
 
-  return (yaw + math.rad(yaw_offset)) % math.pi * 2
+  return (yaw + math.rad(yaw_offset)) % (math.pi * 2)
 end
 
 local function pid(target, dt)
@@ -131,7 +131,7 @@ local function consoleLoop()
     local cmd, arg = line:match("^(%S+)%s*(.*)$")
 
     if cmd == "head" then
-      ap_state.target_head = tonumber(arg)
+      ap_state.target_head = math.rad(tonumber(arg))
     elseif cmd == "speed" then
       ap_state.target_speed = tonumber(arg)
     end

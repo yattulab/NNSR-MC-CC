@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "gabuniku/auto-pilot-vehicle",
+  "version": "0.0.1",
+  "name": "auto-pilot-vehicle",
+  "description": "",
+  "entry": "main.lua",
+  "files": [
+    "main.lua"
+  ]
+}

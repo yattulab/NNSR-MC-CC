@@ -1,3 +1,3 @@
 local args = { ... }
 
-print("Hello World")
+print("this package is library")

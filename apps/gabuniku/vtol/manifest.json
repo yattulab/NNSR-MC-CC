@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "gabuniku/vtol",
+  "version": "0.0.1",
+  "name": "vtol",
+  "description": "",
+  "entry": "main.lua",
+  "files": [
+    "main.lua"
+  ]
+}

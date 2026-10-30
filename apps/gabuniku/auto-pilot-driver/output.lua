@@ -11,7 +11,9 @@ function output_driver.new(context)
   if context.type == "ccpe:transmission" then
     -- init servo mode
     peripheral.call(context.name, "setServoMode", context.config.mode == "servo")
-    peripheral.call(context.name, "setServoSpeed", context.config.servo_rpm)
+    if context.config.servo_rpm then
+      peripheral.call(context.name, "setServoSpeed", context.config.servo_rpm)
+    end
   elseif context.type == "ccpe:servo_bearing" or context.type == "ccpe:aero_bearing" then
     peripheral.call(context.name, "assemble")
   end
@@ -32,10 +34,15 @@ function output_driver:write(value)
       value = 1.0 - value
     end
     if ctx.config.mode == "analog" then
-      peripheral.call(ctx.name, "setAnalogOutput", value)
+      peripheral.call(ctx.name, "setAnalogOutput", ctx.config.face, value)
     else
-      peripheral.call(ctx.name, "setOutput", (value > 0))
+      peripheral.call(ctx.name, "setOutput", ctx.config.face, (value > 0))
     end
+  elseif driver_type == "analog_transmission" then
+    if ctx.invert then
+      value = 1.0 - value
+    end
+    peripheral.call(ctx.name, "setSignal", value)
   elseif driver_type == "ccpe:transmission" then
     ---@type TransmissionConfig
     local config = ctx.config

@@ -6,6 +6,12 @@
   "description": "",
   "entry": "main.lua",
   "files": [
-    "main.lua"
+    "main.lua",
+    "v001.lua",
+    "configs/THI-DFQZ.lua"
+  ],
+  "dependencies": [
+    "gabuniku/auto-pilot-driver",
+    "gabuniku/auto-pilot-control"
   ]
 }

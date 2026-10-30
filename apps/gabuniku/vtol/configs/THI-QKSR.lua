@@ -1,6 +1,10 @@
 --- test model for single
 ---@type DriverConfig
 local config = {
+  monitor = {
+    channel = 2,
+    id = 6,
+  },
   inputs = {
     joy = {
       type = "ccpe:joystick",
@@ -22,48 +26,54 @@ local config = {
       name = "toggle_speed",
       type = "ccpe:knob",
       config = {
-        channel = 6,
+        channel = 2,
         id = 5,
+        is_desk = true,
       },
     },
     toggle_alt = {
       name = "toggle_alt",
       type = "ccpe:switch",
       config = {
-        channel = 6,
+        channel = 2,
         id = 4,
+        is_desk = true,
       },
     },
-    toggle_angle = {
-      name = "toggle_angle",
+    toggle_hover = {
+      name = "toggle_hover",
       type = "ccpe:switch",
       config = {
-        channel = 6,
+        channel = 2,
         id = 3,
+        is_desk = true,
       },
     },
     knob_speed = {
       name = "knob_speed",
       type = "ccpe:knob",
       config = {
-        channel = 6,
+        channel = 2,
         id = 1,
+        is_desk = true,
       },
     },
     knob_alt = {
       name = "knob_alt",
       type = "ccpe:knob",
       config = {
-        channel = 6,
+        channel = 2,
         id = 2,
+        is_desk = true,
       },
     },
     knob_angle = {
       name = "knob_angle",
       type = "ccpe:knob",
       config = {
-        channel = 6,
+        channel = 2,
         id = 0,
+        is_desk = true,
       },
     },
     throttle = {
@@ -97,6 +107,7 @@ local config = {
       config = {
         mode = "servo",
         servo_max = 90,
+        servo_rpm = 16,
       },
     },
     angle_r = {
@@ -105,6 +116,7 @@ local config = {
       config = {
         mode = "servo",
         servo_max = 90,
+        servo_rpm = 16,
       },
     },
   },

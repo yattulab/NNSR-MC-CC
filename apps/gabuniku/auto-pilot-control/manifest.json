@@ -6,6 +6,8 @@
   "description": "",
   "entry": "main.lua",
   "files": [
-    "main.lua"
+    "main.lua",
+    "lpf.lua",
+    "pid.lua"
   ]
 }

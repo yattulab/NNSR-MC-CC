@@ -49,6 +49,7 @@
 ---@class CCPEModulesConfig
 ---@field channel number
 ---@field id number | CCPEDeskModuleType
+---@field is_desk boolean?
 
 ---@class InputContext
 ---@field type InputType

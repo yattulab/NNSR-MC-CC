@@ -2,7 +2,7 @@
 ---@type DriverConfig
 local config = {
   monitor = {
-    channel = 2,
+    channel = 0,
     id = 6,
   },
   inputs = {
@@ -10,7 +10,7 @@ local config = {
       type = "ccpe:joystick",
       name = "joy",
       config = {
-        channel = 0,
+        channel = 1,
         id = "joystick_2",
       },
     },
@@ -18,7 +18,7 @@ local config = {
       type = "ccpe:pedal",
       name = "pedal",
       config = {
-        channel = 2,
+        channel = 0,
         id = "pedal",
       },
     },
@@ -26,7 +26,7 @@ local config = {
       name = "toggle_speed",
       type = "ccpe:knob",
       config = {
-        channel = 2,
+        channel = 0,
         id = 5,
         is_desk = true,
       },
@@ -35,7 +35,7 @@ local config = {
       name = "toggle_alt",
       type = "ccpe:switch",
       config = {
-        channel = 2,
+        channel = 0,
         id = 4,
         is_desk = true,
       },
@@ -44,7 +44,7 @@ local config = {
       name = "toggle_hover",
       type = "ccpe:switch",
       config = {
-        channel = 2,
+        channel = 0,
         id = 3,
         is_desk = true,
       },
@@ -53,7 +53,7 @@ local config = {
       name = "knob_speed",
       type = "ccpe:knob",
       config = {
-        channel = 2,
+        channel = 0,
         id = 1,
         is_desk = true,
       },
@@ -62,7 +62,7 @@ local config = {
       name = "knob_alt",
       type = "ccpe:knob",
       config = {
-        channel = 2,
+        channel = 0,
         id = 2,
         is_desk = true,
       },
@@ -71,7 +71,7 @@ local config = {
       name = "knob_angle",
       type = "ccpe:knob",
       config = {
-        channel = 2,
+        channel = 0,
         id = 0,
         is_desk = true,
       },
@@ -80,28 +80,28 @@ local config = {
       name = "throttle",
       type = "ccpe:throttle",
       config = {
-        channel = 1,
+        channel = 2,
         id = "throttle",
       },
     },
   },
   outputs = {
     speed_l = {
-      name = "ccpe:transmission_peripheral_16",
+      name = "ccpe:transmission_peripheral_4",
       type = "ccpe:transmission",
       config = {
         mode = "transmission",
       },
     },
     speed_r = {
-      name = "ccpe:transmission_peripheral_18",
+      name = "ccpe:transmission_peripheral_2",
       type = "ccpe:transmission",
       config = {
         mode = "transmission",
       },
     },
     angle_l = {
-      name = "ccpe:transmission_peripheral_15",
+      name = "ccpe:transmission_peripheral_3",
       type = "ccpe:transmission",
       invert = true,
       config = {
@@ -111,7 +111,7 @@ local config = {
       },
     },
     angle_r = {
-      name = "ccpe:transmission_peripheral_17",
+      name = "ccpe:transmission_peripheral_1",
       type = "ccpe:transmission",
       config = {
         mode = "servo",

@@ -46,16 +46,28 @@ local vehicle = {
   angle_r = outputlib.new(conf.outputs.angle_r),
 }
 
+local function getHoverRPM()
+  local pos = ss.getBodyPosition()
+  local pressure = ss.getPressureFromAltitude(pos.y)
+  local gravity = ss.getPhysicsChainGravityForce()
+  return ss.getPropellerRPM(gravity, pressure, 0, 0)
+end
+
 local function control()
   local desk = ss.getPeripheral(conf.inputs.throttle.config.channel)
-  local throttle = desk.getModule(conf.inputs.throttle.config.id)
-  throttle.setFreeMode(true)
+  local throttle_module = desk.getModule(conf.inputs.throttle.config.id)
+  throttle_module.setFreeMode(true)
 
   desk = ss.getPeripheral(conf.monitor.channel)
   local screen = desk.getModule("monitor").getModule(6)
   screen.clear()
   screen.setTextScale(0.5, 1.0)
   screen.write("ID : " .. vehicle_id)
+
+  -- FMC
+  ss.initPropeller(2, 17)
+
+  local prev_toggle_hover = vehicle.toggle_hover:read()
 
   while true do
     local joy = vehicle.joy:read()
@@ -68,6 +80,13 @@ local function control()
     local speed_r = 0.0
     local angle_l = 0.0
     local angle_r = 0.0
+
+    if (hover_enable ~= prev_toggle_hover) and hover_enable > 0 then
+      local rpm = getHoverRPM()
+      throttle_module.setAxis(rpm / 256.0)
+    end
+    prev_toggle_hover = hover_enable
+
     if hover_enable > 0 then
       -- hover
       speed_l = throttle + (joy[1] * 0.2)
